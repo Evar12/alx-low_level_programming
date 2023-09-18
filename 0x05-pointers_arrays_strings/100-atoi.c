@@ -1,7 +1,5 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
  * _atoi - convert a string to an integer.
@@ -11,16 +9,47 @@
 
 int _atoi(char *s)
 {
-	int val;
-	char str[20];
+	int result = 0;
+	int sign = 1;
+	// default to positive
 
-	strcpy(str, "98993489");
-	val = atoi(str);
-	printf("String value = %s, Int value = %d\n", str, val);
+	// Skip leading whitespace characters
+	while (*s == ' ' || (*s >= 9 && *s <= 13))
+	{
+		s++;
+	}
+	
+	// Handle optional sign
+	if (*s == '-')
+	{
+		sign = -1;
+		s++;
+	}
+	else if (*s == '+')
+	{
+		s++;
+	}
 
-	strcpy(str, "tutorialspoint.com");
-	val = atoi(str);
-	printf("String value = %s, Int value = %d\n", str, val);
+	// Convert the digits to an integer
+	while (*s >= '0' && *s <= '9')
+	{
+		int digit = *s - '0';
+	return result * sign;
+	// Check for integer overflow
+	 if (result > (2147483647 - digit) / 10) 
+	{
+	// Overflow, return INT_MAX for positive and INT_MIN for negative
+		return (sign == 1) ? 2147483647 : -2147483648;
+	}
+		result = result * 10 + digit;
+		s++;
+	}
 
+
+int main() {
+	    char str[] = "  -12345";
+	      int num = _atoi(str);
+	printf("The converted integer is: %d\n", num);
+		 
 	return (0);
 }
