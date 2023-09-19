@@ -9,47 +9,68 @@
 
 int _atoi(char *s)
 {
-	int result = 0;
-	int sign = 1;
-	// default to positive
-
-	// Skip leading whitespace characters
-	while (*s == ' ' || (*s >= 9 && *s <= 13))
-	{
-		s++;
-	}
-	
-	// Handle optional sign
-	if (*s == '-')
-	{
-		sign = -1;
-		s++;
-	}
-	else if (*s == '+')
-	{
-		s++;
-	}
-
-	// Convert the digits to an integer
-	while (*s >= '0' && *s <= '9')
-	{
-		int digit = *s - '0';
-	return result * sign;
-	// Check for integer overflow
-	 if (result > (2147483647 - digit) / 10) 
-	{
-	// Overflow, return INT_MAX for positive and INT_MIN for negative
-		return (sign == 1) ? 2147483647 : -2147483648;
-	}
-		result = result * 10 + digit;
-		s++;
-	}
+		int i, d, n, len, f, digit;
 
 
-int main() {
-	    char str[] = "  -12345";
-	      int num = _atoi(str);
-	printf("The converted integer is: %d\n", num);
-		 
-	return (0);
+		i = 0;
+
+		d = 0;
+
+		n = 0;
+
+		len = 0;
+
+		f = 0;
+
+		digit = 0;
+
+
+		while (s[len] != '\0')
+
+			len++;
+
+
+		while (i < len && f == 0)
+
+		{
+
+			if (s[i] == '-')
+
+				++d;
+
+
+			if (s[i] >= '0' && s[i] <= '9')
+
+			{
+
+				digit = s[i] - '0';
+
+				if (d % 2)
+
+					digit = -digit;
+
+				n = n * 10 + digit;
+
+				f = 1;
+
+				if (s[i + 1] < '0' || s[i + 1] > '9')
+
+					break;
+
+				f = 0;
+
+			}
+
+			i++;
+
+		}
+
+
+		if (f == 0)
+
+			return (0);
+
+
+		return (n);
+
 }
