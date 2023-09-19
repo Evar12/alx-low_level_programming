@@ -9,29 +9,27 @@
 void rev_string(char *s)
 {
 
-        char rev = s[0];
+	char rev = s[0];
 
-        int counter = 0;
+	int counter = 0;
 
-        int i;
+	int i;
 
 
-        while (s[counter] != '\0')
+	while (s[counter] != '\0')
+	counter++;
 
-        counter++;
+	for (i = 0; i < counter; i++)
+	{
 
-        for (i = 0; i < counter; i++)
+	counter--;
 
-        {
+	rev = s[i];
 
-                counter--;
+	s[i] = s[counter];
 
-                rev = s[i];
+	s[counter] = rev;
 
-                s[i] = s[counter];
-
-                s[counter] = rev;
-
-        }
+	}
 
 }
