@@ -1,48 +1,33 @@
 #include "main.h"
 
+int is_prime_number(int n);
+int actual_prime (int n, int i);
+
 /**
- * is_prime - checks integer as candidate for prime number
- * @prime:  integer
- * @n: integer
- * Return: 1 if
+ * is_prime_number - checks if integer is prime number or not
+ * @n:  integer to check
+ * Return: 1 if n is prime number, 0 if not
  */
 
-int is_prime_number(int n);
-
-int print_char(int n) {
-    return _putchar(n + '0');
+int is_prime_number(int n)
+{
+	if(n <= 1)
+		return(0);
+	return(actual_prime(n,n-1));
 }
 
-int custom_strlen(char *str) {
-    int len = 0;
-    while (str[len] != '\0') {
-        len++;
-    }
-    return len;
-}
+/**
+ * actual_prime - calculates if a number is prime recursively
+ * @n: number to check
+ * @i: iterator
+ * Return: 1 if n is prime number, 0 if not
+ */
 
-void print_number(int n) {
-    if (n < 0) {
-        _putchar('-');
-        n = -n;
-    }
-    if (n == 0) {
-        _putchar('0');
-    } else {
-        int len = 0;
-        int temp = n;
-        while (temp > 0) {
-            temp /= 10;
-            len++;
-        }
-        char num_str[len];
-        for (int i = len - 1; i >= 0; i--) {
-            num_str[i] = (n % 10) + '0';
-            n /= 10;
-        }
-        for (int i = 0; i < len; i++) {
-            _putchar(num_str[i]);
-        }
-    }
+int actual_prime (int n, int i)
+{
+	if(i == 1)
+		return(1);
+	if(n % i == 0 && i > 0)
+		return(0);
+	return(actual_prime (n, i - 1));
 }
-
