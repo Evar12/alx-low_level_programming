@@ -1,3 +1,4 @@
 #!/bin/bash
-gcc -fpic -c *.c # Generate an object file given
+gcc -c -fPIC *.c
 gcc -shared -o liball.so *.o
+export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
